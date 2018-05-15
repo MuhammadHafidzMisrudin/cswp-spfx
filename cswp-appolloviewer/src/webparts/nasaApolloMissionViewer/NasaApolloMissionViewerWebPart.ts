@@ -37,6 +37,7 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
     return Version.parse('1.0');
   }
 
+  // get the configuration to build the property pane for the web parts.
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
       pages: [
