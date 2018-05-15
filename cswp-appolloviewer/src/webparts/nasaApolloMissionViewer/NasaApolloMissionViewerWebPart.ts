@@ -22,6 +22,7 @@ export interface INasaApolloMissionViewerWebPartProps {
 
 export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPart<INasaApolloMissionViewerWebPartProps> {
 
+  // retrieve the current selected mission
   private selectedMission: IMission = this._getSelectedMission();
 
   private missionDetailElement: HTMLElement;
@@ -76,6 +77,7 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
     };
   }
 
+  // use Mission Service to retrieve a mission with a corresponding id.
   private _getSelectedMission(): IMission{
     const selectedMissionId: string = 'AS-506';
     return MissionService.getMission(selectedMissionId);
