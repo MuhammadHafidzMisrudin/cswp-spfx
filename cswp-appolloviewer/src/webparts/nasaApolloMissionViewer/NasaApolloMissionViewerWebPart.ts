@@ -18,12 +18,24 @@ import {
 
 export interface INasaApolloMissionViewerWebPartProps {
   description: string;
+  selectedMission: string;
 }
 
 export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPart<INasaApolloMissionViewerWebPartProps> {
 
-  // retrieve the current selected mission
-  private selectedMission: IMission = this._getSelectedMission();
+  // retrieve the current selected mission.
+  private selectedMission: IMission;
+
+  protected onInit(): Promise<void>{
+    return new Promise<void>(
+      (
+        resolve: () => void,
+        reject: (error: any) => void
+      ): void => {
+        this.selectedMission = this._getSelectedMission();
+        resolve();
+      });
+  }
 
   private missionDetailElement: HTMLElement;
 
@@ -41,8 +53,10 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
         </div>
       </div>`;
 
+      // get a reference to a div.
       this.missionDetailElement = document.getElementById('apolloMissionDetails');
 
+      // show mission if found, otherwise show empty.
       if (this.selectedMission) {
         this._renderMissionDetails(this.missionDetailElement, this.selectedMission);
       } else {
@@ -79,7 +93,7 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
 
   // use Mission Service to retrieve a mission with a corresponding id.
   private _getSelectedMission(): IMission{
-    const selectedMissionId: string = 'AS-506';
+    const selectedMissionId: string = (this.properties.selectedMission) ? this.properties.selectedMission : "AS-506";
     return MissionService.getMission(selectedMissionId);
   }
 

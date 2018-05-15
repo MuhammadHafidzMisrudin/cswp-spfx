@@ -16,11 +16,12 @@
   "preconfiguredEntries": [{
     "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
     "group": { "default": "Other" },
-    "title": { "default": "NASA Apollo Mission Viewer" },
+    "title": { "default": "Apollo Mission Viewer" },
     "description": { "default": "NASA Apollo Mission Viewer description" },
-    "officeFabricIconFontName": "Page",
+    "officeFabricIconFontName": "BulletedList",
     "properties": {
-      "description": "NASA Apollo Mission Viewer"
+      "description": "NASA Apollo Mission Viewer",
+      "selectedMission": "AS-507"
     }
   }]
 }
