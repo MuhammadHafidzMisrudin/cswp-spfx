@@ -2,7 +2,7 @@ import { Version } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField, IPropertyPaneTextFieldProps
 } from '@microsoft/sp-webpart-base';
 import { escape } from '@microsoft/sp-lodash-subset';
 
@@ -82,7 +82,10 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
               groupFields: [
                 PropertyPaneTextField('description', {
                   label: strings.DescriptionFieldLabel
-                })
+                }),
+                PropertyPaneTextField('selectedMission', <IPropertyPaneTextFieldProps>{
+                  label: 'Apollo Mission ID to Show'
+                }) // add new control to a custom property pane
               ]
             }
           ]
