@@ -1,7 +1,9 @@
 import {IMission} from '../models';
 
+// create a MissionService class
 export class MissionService {
 
+  // missions jason arrays.
   private static _missions: IMission[] = <IMission[]>[
     {
       "id": "AS-201",
@@ -427,5 +429,19 @@ export class MissionService {
         },
       ]
     }
-  ]
+  ];
+
+  /*
+   return collection of all Nasa Apollo missions.
+  */
+  public static getMissions(): IMission[]{
+    return this._missions;
+  }
+
+  /*
+   retrieve a single mission using the specified mission ID.
+  */
+  public static getMission(missionId: string): IMission{
+    return this._missions.filter((mission: IMission) => mission.id == missionId)[0];
+  }
 }
