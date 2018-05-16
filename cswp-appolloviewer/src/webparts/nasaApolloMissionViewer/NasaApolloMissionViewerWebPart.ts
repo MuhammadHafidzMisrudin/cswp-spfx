@@ -84,8 +84,9 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
                   label: strings.DescriptionFieldLabel
                 }),
                 PropertyPaneTextField('selectedMission', <IPropertyPaneTextFieldProps>{
-                  label: 'Apollo Mission ID to Show'
-                }) // add new control to a custom property pane.
+                  label: 'Apollo Mission ID to Show',
+                  onGetErrorMessage: this._validateMissionCode.bind(this) // validation of data.
+                }) // add new controls to a custom property pane.
               ]
             }
           ]
@@ -94,6 +95,14 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
     };
   }
 
+  // validate the value of property pane field text.
+  // pop up the content of response will be displayed.
+  private _validateMissionCode(value: string): string {
+    const _validateMissionCode = /AS-[2,5][0,1][0-9]/g
+    return value.match(_validateMissionCode) ? '' : "Invalid mission code: Should be \'AS-###\'.";
+  }
+
+  // change the mode of property pane.
   protected get disableReactivePropertyChanges(): boolean{
     return true;
   }
