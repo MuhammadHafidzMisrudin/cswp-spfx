@@ -2,7 +2,8 @@ import { Version } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
-  PropertyPaneTextField, IPropertyPaneTextFieldProps
+  PropertyPaneTextField, IPropertyPaneTextFieldProps, // added PropertyPaneField control.
+  PropertyPaneLabel
 } from '@microsoft/sp-webpart-base';
 import { escape } from '@microsoft/sp-lodash-subset';
 
@@ -76,9 +77,12 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
           header: {
             description: strings.PropertyPaneDescription
           },
+          displayGroupsAsAccordion: true,
           groups: [
+            // <group 1>
             {
               groupName: strings.BasicGroupName,
+              isCollapsed: true,
               groupFields: [
                 PropertyPaneTextField('description', {
                   label: strings.DescriptionFieldLabel
@@ -88,8 +92,20 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
                   onGetErrorMessage: this._validateMissionCode.bind(this) // validation of data.
                 }) // add new controls to a custom property pane.
               ]
+            },
+            // </group 1>
+            // <group 2>
+            {
+              groupName: 'Group 2',
+              isCollapsed: true,
+              groupFields: [
+                PropertyPaneLabel('',{
+                  text: 'hello world'
+                })
+              ]
             }
-          ]
+            // </group 2>
+          ] // groups[]
         }
       ]
     };
