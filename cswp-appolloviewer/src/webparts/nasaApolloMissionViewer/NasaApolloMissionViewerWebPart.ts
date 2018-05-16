@@ -123,8 +123,24 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
             }
             // </group 2>
           ] // groups[]
-        }
+        },
         // </page 2>
+        // <page 3>
+        {
+          header: {
+            description: 'Description: Custom Button Parts'
+          },
+          groups: [
+            {
+              groupFields: [
+                PropertyPaneLabel('',{
+                  text: 'This is 3st Web Part'
+                })
+              ]
+            }
+          ]
+        },
+        // <page 3>
       ]
     };
   }
