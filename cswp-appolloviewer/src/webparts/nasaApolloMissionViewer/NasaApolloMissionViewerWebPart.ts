@@ -73,6 +73,23 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
       pages: [
+        // <page 1>
+        {
+          header: {
+            description: 'Description: About Web Parts'
+          },
+          groups: [
+            {
+              groupFields: [
+                PropertyPaneLabel('',{
+                  text: 'This is 1st Web Part'
+                })
+              ]
+            }
+          ]
+        },
+        // </page 1>
+        // <page 2>
         {
           header: {
             description: strings.PropertyPaneDescription
@@ -107,6 +124,7 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
             // </group 2>
           ] // groups[]
         }
+        // </page 2>
       ]
     };
   }
