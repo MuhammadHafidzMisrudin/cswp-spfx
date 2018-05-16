@@ -85,13 +85,31 @@ export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPar
                 }),
                 PropertyPaneTextField('selectedMission', <IPropertyPaneTextFieldProps>{
                   label: 'Apollo Mission ID to Show'
-                }) // add new control to a custom property pane
+                }) // add new control to a custom property pane.
               ]
             }
           ]
         }
       ]
     };
+  }
+
+  protected get disableReactivePropertyChanges(): boolean{
+    return true;
+  }
+
+  // changes applied: the apply button generated at the bottom of the property pane.
+  // this is the result of making the property pane non-reactive.
+  protected onAfterPropertyPaneChangesApplied(): void{
+    // update selected mission details on web parts.
+    this.selectedMission = this._getSelectedMission();
+
+    // update rendering.
+    if (this.selectedMission) {
+      this._renderMissionDetails(this.missionDetailElement, this.selectedMission);
+    } else {
+      this.missionDetailElement.innerHTML = '';
+    }
   }
 
   // use Mission Service to retrieve a mission with a corresponding id.
