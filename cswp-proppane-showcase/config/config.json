@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "entry": "./lib/webparts/spFxWebPartPropertyPaneControlShowcase/SpFxWebPartPropertyPaneControlShowcaseWebPart.js",
+      "manifest": "./src/webparts/spFxWebPartPropertyPaneControlShowcase/SpFxWebPartPropertyPaneControlShowcaseWebPart.manifest.json",
+      "outputPath": "./dist/sp-fx-web-part-property-pane-control-showcase.bundle.js"
+    }
+  ],
+  "externals": {},
+  "localizedResources": {
+    "spFxWebPartPropertyPaneControlShowcaseStrings": "webparts/spFxWebPartPropertyPaneControlShowcase/loc/{locale}.js"
+  }
+}

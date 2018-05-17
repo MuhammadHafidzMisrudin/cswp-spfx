@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "name": "cswp-proppane-showcase-client-side-solution",
+    "id": "ee5840f3-6051-4e99-a978-504d908c0218",
+    "version": "1.0.0.0"
+  },
+  "paths": {
+    "zippedPackage": "solution/cswp-proppane-showcase.sppkg"
+  }
+}
