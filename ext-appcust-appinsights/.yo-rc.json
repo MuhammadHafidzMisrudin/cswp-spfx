@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "version": "1.4.1",
+    "libraryName": "ext-appcust-appinsights",
+    "libraryId": "9a683b2d-52e0-43e3-b9bf-63e582abd2bd",
+    "environment": "spo"
+  }
+}
