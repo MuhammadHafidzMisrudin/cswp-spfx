@@ -14,8 +14,8 @@ import styles from './ApolloMissionApplicationCustomizer.module.scss';
 
 const LOG_SOURCE: string = 'PlaceholderDemoApplicationCustomizerApplicationCustomizer';
 
-import {} from "../../models";
-import {} from "../../services";
+import { IMission } from "../../models";
+import { MissionService } from "../../services";
 
 /**
  * If your command set uses the ClientSideComponentProperties JSON input,
@@ -31,17 +31,76 @@ export interface IPlaceholderDemoApplicationCustomizerApplicationCustomizerPrope
 export default class PlaceholderDemoApplicationCustomizerApplicationCustomizer
   extends BaseApplicationCustomizer<IPlaceholderDemoApplicationCustomizerApplicationCustomizerProperties> {
 
-  @override
-  public onInit(): Promise<void> {
-    Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
+    private _topPlaceHolder: PlaceholderContent | undefined;
+    private _bottomPlaceHolder: PlaceholderContent | undefined;
 
-    let message: string = this.properties.testMessage;
-    if (!message) {
-      message = '(No properties were provided.)';
+    // responsible for loading all information that needs to be rendered in placeholder as well as rendering
+    @override
+    public onInit(): Promise<void> {
+      Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
+
+      this._renderPlaceHolder();
+      return Promise.resolve();
     }
 
-    Dialog.alert(`Hello from ${strings.Title}:\n\n${message}`);
 
-    return Promise.resolve();
-  }
+    /**
+     * Create HTML for insertion into a placeholder on the page.
+     *
+     * @private
+     * @param {IMission}        mission       Apollo mission.
+     * @param {string}          prefixMessage String to add before body.
+     * @returns {string}                      Html string for insertion into placeholder.
+     * @memberof SpaceXMissionNewsApplicationCustomizer
+     */
+    private _getPlaceholderHtml(mission: IMission, prefixMessage: string): string {
+      const missionTime: string = `${this._getLocalizedTimeString(new Date(mission.launch_date))}`;
+
+      const placeholderBody: string = `
+            <div class="${styles.app}">
+              <div class="ms-bgColor-themeDark ms-fontColor-white ${styles.footer}">
+                ${escape(prefixMessage)}:  ${escape(mission.name)} on ${escape(missionTime)}
+              </div>
+            </div>`;
+
+      return placeholderBody;
+    }
+
+    /**
+     * Creates localized time string of the provided date/time.
+     *
+     * @private
+     * @param {Date} dateTimestamp  Timestamp to convert to localized time.
+     * @returns {string}            Localized time string in human readable format.
+     * @memberof SpaceXMissionNewsApplicationCustomizer
+     */
+    private _getLocalizedTimeString(dateTimestamp: Date): string {
+      return `${this._getMonthName(dateTimestamp.getMonth())} ${dateTimestamp.getDate()}, ${dateTimestamp.getFullYear()}`;
+    }
+
+    /**
+     * Returns a month name based on the provided index.
+     *
+     * @private
+     * @param {number} monthIndex   Month number (0-index).
+     * @returns {string}            Month name.
+     * @memberof SpaceXMissionNewsApplicationCustomizer
+     */
+    private _getMonthName(monthIndex: number): string {
+      const monthNames: string[] = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ];
+      return monthNames[monthIndex];
+    }
 }
