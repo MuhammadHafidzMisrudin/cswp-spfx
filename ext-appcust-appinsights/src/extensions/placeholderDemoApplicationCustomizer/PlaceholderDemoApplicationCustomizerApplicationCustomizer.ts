@@ -1,13 +1,21 @@
 import { override } from '@microsoft/decorators';
 import { Log } from '@microsoft/sp-core-library';
 import {
-  BaseApplicationCustomizer
+  BaseApplicationCustomizer,
+  PlaceholderContent,
+  PlaceholderName
 } from '@microsoft/sp-application-base';
 import { Dialog } from '@microsoft/sp-dialog';
 
 import * as strings from 'PlaceholderDemoApplicationCustomizerApplicationCustomizerStrings';
+import { escape } from "@microsoft/sp-lodash-subset";
+
+import styles from './ApolloMissionApplicationCustomizer.module.scss';
 
 const LOG_SOURCE: string = 'PlaceholderDemoApplicationCustomizerApplicationCustomizer';
+
+import {} from "../../models";
+import {} from "../../services";
 
 /**
  * If your command set uses the ClientSideComponentProperties JSON input,
