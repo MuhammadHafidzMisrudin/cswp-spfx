@@ -43,6 +43,41 @@ export default class PlaceholderDemoApplicationCustomizerApplicationCustomizer
       return Promise.resolve();
     }
 
+    private _onDispose(): void {
+
+    }
+
+    private _renderPlaceHolder(): void {
+      if (!this._topPlaceHolder) {
+        this._topPlaceHolder = this.context.placeholderProvider.tryCreateContent(PlaceholderName.Top, {
+          onDispose: this._onDispose
+        });
+
+        if (!this._topPlaceHolder) {
+          console.error("The expected placeholder TOP was not found");
+          return;
+        }
+
+        if (this._topPlaceHolder.domElement) {
+          this._topPlaceHolder.domElement.innerHTML = this._getPlaceholderHtml(MissionService.getMission("AS-506"), "Moon Landing");
+        }
+      }
+
+      if (!this._bottomPlaceHolder) {
+        this._bottomPlaceHolder = this.context.placeholderProvider.tryCreateContent(PlaceholderName.Bottom, {
+          onDispose: this._onDispose
+        });
+
+        if (!this._bottomPlaceHolder) {
+          console.error("The expected placeholder BOTTOM was not found");
+          return;
+        }
+
+        if (this._bottomPlaceHolder.domElement) {
+          this._bottomPlaceHolder.domElement.innerHTML = this._getPlaceholderHtml(MissionService.getMission("AS-512"), "Last Moon Visit");
+        }
+      }
+    }
 
     /**
      * Create HTML for insertion into a placeholder on the page.
