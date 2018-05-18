@@ -7,6 +7,7 @@ import {
 import { escape } from "@microsoft/sp-lodash-subset";
 
 import { Dialog, IAlertOptions, IPromptOptions } from "@microsoft/sp-dialog";
+import { CustomDialog } from "./CustomDialog";
 
 import styles from "./DialogDemoWebPartsWebPart.module.scss";
 import * as strings from "DialogDemoWebPartsWebPartStrings";
@@ -31,6 +32,9 @@ export default class DialogDemoWebPartsWebPart extends BaseClientSideWebPart<
               <div><button class="showPrompt ${
                 styles.button
               }">show prompt dialog</button></div>
+              <div><button class="showCustom ${
+                styles.button
+              }">show custom dialog</button></div>
             </div>
           </div>
         </div>
@@ -49,6 +53,13 @@ export default class DialogDemoWebPartsWebPart extends BaseClientSideWebPart<
       .addEventListener("click", () => {
         this._showPrompt();
       });
+
+    // get a reference to show custom button.
+    this.domElement
+      .getElementsByClassName("showCustom")[0]
+      .addEventListener("click", () => {
+        this._showCustom();
+      });
   }
 
   /* Add code here - event handlers  */
@@ -61,14 +72,14 @@ export default class DialogDemoWebPartsWebPart extends BaseClientSideWebPart<
 
     Dialog.alert("Congrats, you clicked the alert button.", options).then(
       () => {
-        console.log("alert dialog closed");
+        console.log("alert dialog closed"); // debug.
       }
     );
   }
 
   private _confirmOpen(): boolean {
     const decision: boolean = true;
-    console.log("confirm open", decision);
+    console.log("confirm open", decision); // debug.
     return decision;
   }
 
@@ -80,9 +91,18 @@ export default class DialogDemoWebPartsWebPart extends BaseClientSideWebPart<
 
     Dialog.prompt("what is the Voitanos URL?", options).then(
       (result: string | undefined) => {
-        console.log(" ", result);
+        console.log("prompt dialog closed ", result); // debug.
       }
     );
+  }
+
+  // Custom button - submit
+  private _showCustom(): void {
+    const dialog = new CustomDialog();
+
+    dialog.show().then(() => {
+      console.log("custom dialog closed."); // debug.
+    });
   }
 
   /* End - event handlers  */
