@@ -1,0 +1,18 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "dialog-demo-web-parts-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/dialogDemoWebParts/DialogDemoWebPartsWebPart.js",
+          "manifest": "./src/webparts/dialogDemoWebParts/DialogDemoWebPartsWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "DialogDemoWebPartsWebPartStrings": "lib/webparts/dialogDemoWebParts/loc/{locale}.js"
+  }
+}

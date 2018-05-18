@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "version": "1.4.1",
+    "libraryName": "dialogs-demo",
+    "libraryId": "d9435f25-786f-414b-8fa4-8da4d0b64892",
+    "environment": "spo"
+  }
+}

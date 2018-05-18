@@ -1,0 +1,12 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "dialogs-demo-client-side-solution",
+    "id": "d9435f25-786f-414b-8fa4-8da4d0b64892",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/dialogs-demo.sppkg"
+  }
+}
