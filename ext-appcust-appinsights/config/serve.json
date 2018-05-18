@@ -4,7 +4,7 @@
   "https": true,
   "serveConfigurations": {
     "default": {
-      "pageUrl": "https://breadcrumb1.sharepoint.com/sites/Developers23",
+      "pageUrl": "https://breadcrumb1.sharepoint.com/sites/dev/SitePages/HELLO-WORLD.aspx",
       "customActions": {
         "43c9d4f8-3218-4109-8720-f178de7bf819": {
           "location": "ClientSideExtension.ApplicationCustomizer",

@@ -6,7 +6,7 @@ import {
 } from "@microsoft/sp-webpart-base";
 import { escape } from "@microsoft/sp-lodash-subset";
 
-import { Dialog, IAlertOptions } from "@microsoft/sp-dialog";
+import { Dialog, IAlertOptions, IPromptOptions } from "@microsoft/sp-dialog";
 
 import styles from "./DialogDemoWebPartsWebPart.module.scss";
 import * as strings from "DialogDemoWebPartsWebPartStrings";
@@ -28,6 +28,9 @@ export default class DialogDemoWebPartsWebPart extends BaseClientSideWebPart<
               <div><button class="showAlert ${
                 styles.button
               }">show alert dialog</button></div>
+              <div><button class="showPrompt ${
+                styles.button
+              }">show prompt dialog</button></div>
             </div>
           </div>
         </div>
@@ -39,10 +42,18 @@ export default class DialogDemoWebPartsWebPart extends BaseClientSideWebPart<
       .addEventListener("click", () => {
         this._showAlert();
       });
+
+    // get a reference to show prompt button.
+    this.domElement
+      .getElementsByClassName("showPrompt")[0]
+      .addEventListener("click", () => {
+        this._showPrompt();
+      });
   }
 
   /* Add code here - event handlers  */
 
+  // Alert button
   private _showAlert(): void {
     const options: IAlertOptions = {
       confirmOpen: this._confirmOpen
@@ -55,13 +66,26 @@ export default class DialogDemoWebPartsWebPart extends BaseClientSideWebPart<
     );
   }
 
-  /* End - event handlers  */
-
   private _confirmOpen(): boolean {
     const decision: boolean = true;
     console.log("confirm open", decision);
     return decision;
   }
+
+  // Prompt button
+  private _showPrompt(): void {
+    const options: IPromptOptions = {
+      confirmOpen: this._confirmOpen
+    };
+
+    Dialog.prompt("what is the Voitanos URL?", options).then(
+      (result: string | undefined) => {
+        console.log(" ", result);
+      }
+    );
+  }
+
+  /* End - event handlers  */
 
   protected get dataVersion(): Version {
     return Version.parse("1.0");
