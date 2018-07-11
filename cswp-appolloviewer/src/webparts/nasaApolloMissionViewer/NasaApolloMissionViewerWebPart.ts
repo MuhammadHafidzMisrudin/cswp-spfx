@@ -19,9 +19,7 @@ export interface INasaApolloMissionViewerWebPartProps {
   selectedMission: string;
 }
 
-export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPart<
-  INasaApolloMissionViewerWebPartProps
-> {
+export default class NasaApolloMissionViewerWebPart extends BaseClientSideWebPart<INasaApolloMissionViewerWebPartProps> {
   // retrieve the current selected mission.
   private selectedMission: IMission;
 
